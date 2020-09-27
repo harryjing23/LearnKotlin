@@ -1,7 +1,7 @@
-package com.houlin.learnkotlin
+package com.houlin.learnkotlin.basic
 
 // import的"*"代表类中的所有属性和方法
-import com.houlin.learnkotlin.Color.*
+import com.houlin.learnkotlin.basic.Color.*
 
 /**
  * @author Harry Jing

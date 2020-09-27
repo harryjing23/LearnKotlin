@@ -1,4 +1,4 @@
-package com.houlin.learnkotlin
+package com.houlin.learnkotlin.basic
 
 /**
  * @author Harry Jing

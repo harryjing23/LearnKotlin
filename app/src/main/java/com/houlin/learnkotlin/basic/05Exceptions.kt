@@ -1,4 +1,4 @@
-package com.houlin.learnkotlin
+package com.houlin.learnkotlin.basic
 
 import java.io.BufferedReader
 
@@ -7,8 +7,8 @@ import java.io.BufferedReader
  * @date 2020/9/25
  */
 
-// 函数可以抛出异常。处理方式（与Java相同）：1.可以捕获异常try{}catch{} 2.向上再次抛出异常throws
-// 与Java不同的是。Java必须处理受检异常，而Kotlin不分受检和不受检异常，所有异常都可以处理或不处理，且不需要抛出
+// 函数可以抛出异常。Java处理方式：1.可以捕获异常try{}catch{} 2.向上再次抛出异常throws
+// Java必须处理受检异常，而Kotlin不分受检和不受检异常，所有异常都可以处理或不处理，且不需要向上抛出
 
 
 // Kotlin中throw是表达式
@@ -27,7 +27,7 @@ fun inputParseInt(reader: BufferedReader) {
                 Integer.parseInt(line)// parseInt会抛出未受检异常NumberFormatException
             } catch (e: NumberFormatException) {
                 null
-                // 也可以在catch中直接return
+                // 也可以在catch中直接return整个函数
             } finally {
                 reader.close()// close会抛出受检异常IOException
             }
