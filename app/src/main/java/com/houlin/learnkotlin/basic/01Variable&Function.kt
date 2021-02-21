@@ -7,6 +7,7 @@ package com.houlin.learnkotlin.basic
 
 // 函数可以定义在文件的最外层，不需要放在类中
 // 变量的声明。变量名: 数据类型
+// main函数必须要定义在文件最外层
 fun main(args: Array<String>) {
     println("hello world")
 }
