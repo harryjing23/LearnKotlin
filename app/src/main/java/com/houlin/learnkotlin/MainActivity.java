@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.houlin.learnkotlin.function._03ExtensionKt;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
