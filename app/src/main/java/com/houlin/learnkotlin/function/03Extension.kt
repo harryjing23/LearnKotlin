@@ -1,5 +1,6 @@
 package com.houlin.learnkotlin.function
 
+import java.lang.StringBuilder
 import com.houlin.learnkotlin.function.lastChar2 as lastChar3
 
 /**
@@ -27,4 +28,22 @@ fun test() {
     "Kotlin".lastChar3()
 }
 
-// 扩展函数实质上是静态函数（因为是顶层函数），将接受者对象作为它第一个参数。故Java可以
+// 扩展函数实质上是静态函数（因为是顶层函数），将接受者对象作为它第一个参数。故Java也可以调用
+
+// 当然集合类也可以作为扩展函数的接受者类型
+fun <T> Collection<T>.joinToString(separator: String = ", ",
+                                   prefix: String = "(",
+                                   postfix: String = ")"): String {
+    val result = StringBuilder(prefix)
+    for ((index, element) in this.withIndex()) {
+        if (index > 0) result.append(separator)
+        result.append(element)
+    }
+    result.append(postfix)
+    return result.toString()
+}
+
+// 扩展函数因为是静态函数，所以不能重写
+// ###当给父类和子类分别定义了同名的扩展函数，再用子类对象创建父类的数据类型时。则扩展函数会调用父类的，因为对象的数据类型是父类
+// 当一个类的成员函数和扩展函数的签名相同时，会优先调用成员函数
+
