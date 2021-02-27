@@ -1,6 +1,5 @@
 package com.houlin.learnkotlin.function
 
-import java.lang.StringBuilder
 import com.houlin.learnkotlin.function.lastChar2 as lastChar3
 
 /**
@@ -47,3 +46,23 @@ fun <T> Collection<T>.joinToString(separator: String = ", ",
 // ###当给父类和子类分别定义了同名的扩展函数，再用子类对象创建父类的数据类型时。则扩展函数会调用父类的，因为对象的数据类型是父类
 // 当一个类的成员函数和扩展函数的签名相同时，会优先调用成员函数
 
+
+// 扩展属性并没有真正为该类添加属性，只是通过getter和setter计算出属性。故没有初始值，只能通过getter或setter访问
+// 扩展属性可以访问接收者对象的其他属性（像扩展函数一样）
+val String.lastChar: Char
+    get() = this.get(this.length - 1)
+
+// 扩展属性：val要提供getter，var要提供getter和setter
+var StringBuilder.lastChar: Char
+    get() = get(length - 1)
+    set(value: Char) {
+        setCharAt(length - 1, value)
+    }
+
+fun test1() {
+    println("Kotlin".lastChar)
+
+    val sb = StringBuilder("Kotlin?")
+    sb.lastChar = '!'
+    println(sb)
+}
