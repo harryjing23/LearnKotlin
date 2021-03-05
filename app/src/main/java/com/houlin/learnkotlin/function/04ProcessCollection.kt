@@ -18,7 +18,7 @@ fun varargTest(args: Array<String>) {
     mapOf(1 to "one")
 }
 
-// 中缀调用。函数名直接放在目标对象和参数之间，eg. 1 to "one"，则调用了to函数
+// 中缀调用。函数名直接放在目标对象和参数之间，类似于用运算符的形式调用函数。eg. 1 to "one"，则调用了to函数
 // 适用于只有一个参数的函数，用infix修饰函数即可开启中缀调用
 fun middle() {
     val map = mapOf(1 to "one", 2 to "two")
