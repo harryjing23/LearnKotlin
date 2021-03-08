@@ -46,3 +46,17 @@ abstract class Animated {
 // Java中protected成员可以在同一个包中访问或子类中访问，而Kotlin只允许在子类中访问
 // Kotlin的private类在Java中会变成package-private（默认可见性）类，因为Java类（内部类除外）不能是private
 // Kotlin的internal修饰符在Java中变成public，但internal成员名会被破坏，从而避免以外使用
+// Kotlin的外部类不能访问其内部类的private成员，而Java可以
+
+// Java中内部类会持有外部类的实例，可访问外部类的成员（static内部类不会）
+// Kotlin的内部类与Java的static内部类类似，要持有外部类的引用需要用inner修饰符
+
+// 引用外部类实例的语法this@Outer。Java中用外部类类名.this，eg. User.this
+class Outer {
+    inner class Inner {
+        fun getOuterReference(): Outer = this@Outer
+    }
+}
+
+// 密封类。用sealed修饰，不可实例化（只有一个private构造函数），子类必须嵌套在父类中，子类不能是data类
+// when结构用作表达式（有返回值）时，必须要有else分支。sealed类作为条件时除外，但when条件必须遍历所有子类
