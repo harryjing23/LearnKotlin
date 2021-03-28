@@ -15,7 +15,6 @@ fun varargTest(args: Array<String>) {
     // Kotlin中需要解包数组（在数组前加*）才能给可变参数传入数组，且可以再继续添加参数
     val list = listOf("args: ", *args)
     // Java中可以直接给可变参数传入一个数组类型，但传入了数组就不能再有其他参数
-    mapOf(1 to "one")
 }
 
 // 中缀调用。函数名直接放在目标对象和参数之间，类似于用运算符的形式调用函数。eg. 1 to "one"，则调用了to函数
@@ -33,3 +32,14 @@ fun <T> dec(collection: Collection<T>) {
         println("$index: $element")
     }
 }
+
+fun test1(args: Array<Student>) {
+    // 用"="给多个变量赋值
+    val (n, a) = args[0]
+    // 循环中用"in"赋值，不需要用val/var声明变量类型
+    for ((n1, a1) in args) {
+        println("name: $n1, age: $a1")
+    }
+}
+
+data class Student(val name: String, val age: Int)
