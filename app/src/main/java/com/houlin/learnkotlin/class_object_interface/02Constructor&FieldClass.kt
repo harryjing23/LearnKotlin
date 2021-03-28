@@ -70,3 +70,47 @@ class MyButton : View {
         // some code
     }
 }
+
+// Kotlin中接口可以声明抽象属性，但不会存储它
+interface User01 {
+    // 接口中的属性是抽象属性，实现接口必须override抽象属性
+    val nickname: String
+
+    // 接口中还可以声明具有getter和setter的属性，只要没有引用支持字段即可，子类无需override
+    // （支持字段：需要存储状态的字段）
+    val lastchar: String
+        get() = nickname.substring(nickname.length - 1)
+}
+
+// 可以在主构造方法中override接口的属性
+class PrivateUser(override val nickname: String) : User01
+
+// 可以在类内override接口的属性
+class SubscribingUser(val email: String) : User01 {
+    // 并没有存储该属性，每次访问自定义getter时都要计算
+    override val nickname: String
+        get() = email.substringBefore('@')
+}
+
+class FacebookUser(val email: String) : User01 {
+    // 对属性进行赋值，存储了该属性
+    override val nickname: String = email.substringBefore('@')
+}
+
+class User02(val name: String) {
+    // 在setter中用"field"访问支持字段，而非直接使用属性名访问
+    var address: String = "unspecified"
+        set(value: String) {
+            println("""
+                Address was changed for $name:
+                "$field" -> "$value".""".trimIndent())
+            field = value
+        }
+}
+
+class LengthCounter {
+    // 访问器的可见性默认与属性的可见性相同，可以用可见性修饰符修改访问器的可见性
+    var counter: Int = 0
+        // 修改默认访问器的可见性
+        private set
+}
