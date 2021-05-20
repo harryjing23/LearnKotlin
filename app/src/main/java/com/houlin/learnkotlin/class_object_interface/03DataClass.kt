@@ -51,7 +51,8 @@ fun testCopy() {
 
 // 类委托by，将接口的实现委托到另一个对象。自动生成接口的所有方法去调用另一个对象的对应方法
 // 类似于用装饰器模式来扩展某个类，但是减少了样板代码
-class CountingSet<T>(val innerSet: MutableCollection<T> = HashSet<T>()) : MutableCollection<T> by innerSet {
+class CountingSet<T>(val innerSet: MutableCollection<T> = HashSet<T>()) :
+    MutableCollection<T> by innerSet {
     var objectsAdded = 0
 
     // 重写要修改的方法，外部调用时就不再走自动生成的方法了
