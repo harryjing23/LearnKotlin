@@ -56,7 +56,7 @@ open class View {
 }
 
 class MyButton : View {
-    // 构造方法都需要调用父类的构造方法。从构造方法也不例外
+    // ### 构造方法都需要调用父类的构造方法。从构造方法也不例外
     constructor(ctx: Context) : super(ctx) {
         // some code
     }
@@ -65,7 +65,7 @@ class MyButton : View {
         // some code
     }
 
-    // 也可以使用this调用本类的其他构造方法，但也是在":"后面调用
+    // ### 也可以使用this调用本类的其他构造方法，但也是在":"后面调用
     constructor() : this(MainActivity.instance) {
         // some code
     }
@@ -98,13 +98,13 @@ class FacebookUser(val email: String) : User01 {
 }
 
 class User02(val name: String) {
-    // 在setter中用"field"访问支持字段，而非直接使用属性名访问
+    // ### 在setter中用"field"访问支持字段（属性本身），而非直接使用属性名访问
     var address: String = "unspecified"
-        set(value: String) {
+        set(newName: String) {
             println("""
                 Address was changed for $name:
-                "$field" -> "$value".""".trimIndent())
-            field = value
+                "$field" -> "$newName".""".trimIndent())
+            field = newName
         }
 }
 
