@@ -2,6 +2,7 @@ package com.houlin.learnkotlin.class_object_interface
 
 /**
  * 4.3 编译器生成的方法：数据类和类委托
+ * data类会自动生成方法equals, hashCode, toString, copy
  * @author  Harry
  * @date  2021/3/29
  */

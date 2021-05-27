@@ -98,7 +98,7 @@ class FacebookUser(val email: String) : User01 {
 }
 
 class User02(val name: String) {
-    // 在setter中用"field"访问支持字段，而非直接使用属性名访问
+    // 在访问器中用"field"引用支持字段，而非直接使用属性名引用
     var address: String = "unspecified"
         set(value: String) {
             println("""
