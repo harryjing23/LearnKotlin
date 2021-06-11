@@ -36,9 +36,43 @@ fun maxAge() {
     println(p.maxBy { p -> p.age })
     // 简写4。若上下文期望的是只有一个参数的lambda且类型可推断，会生成默认参数名称it
     println(p.maxBy { it.age })
+    // 若用变量存储lambda，则没有推断出参数类型的上下文
 
-    // 若lambda是函数或属性的委托，则可用成员引用替换？？？
+    // 若lambda是函数或属性的委托（只是访问了函数或属性），则可用成员引用替换
     println(p.maxBy(Person::age))
     // 可以用库函数run来直接执行传给它的lambda
     run { println("lambda") }
 }
+
+fun printMessagesWithPrefix(messages: Collection<String>, prefix: String) {
+    messages.forEach {
+        // 与匿名内部类相同，函数中的lambda可以访问函数的参数和局部变量
+        println("$prefix $it")
+        // Java的lambda只能捕捉不可变变量final，而在Kotlin可以捕捉可变变量（原理是用包装类来存储变量）
+    }
+}
+
+
+// 成员引用。用于创建一个函数值，可以访问单个成员
+val getAge = Person::age
+
+// 成员引用与lambda可以互换使用
+val getAge1 = { person: Person -> person.age }
+
+fun test() {
+    // 引用顶层函数时，::前面不加类名，因为顶层函数不是类的成员
+    // 即使引用的是方法，成员引用的后面也要不加括号
+    run(::maxAge)
+}
+
+// 构造方法引用。用于存储或延期执行创建类实例的动作
+val createPerson = ::Person
+val p = createPerson("Alice", 29)
+
+// 扩展函数引用。尽管扩展函数不是类的成员，但可以通过引用访问它
+fun Person.isAdult() = age >= 18
+val predicate = Person::isAdult
+
+// predicate这个成员引用需要一个Person参数，调用代码：predicate(p)
+// Kotlin1.1可以使用"绑定成员引用"，而不需要参数。因为指定了实例
+val predicate1 = p.isAdult()
